@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=TODO NOTIF
+Comment=This runs my todo notification app
+Exec=todo_notif
+Icon=/home/mohsen/.local/share/todo_notification/todo-notif-icon.png
+Terminal=false
+Type=Application
+Categories=Utility;
+
