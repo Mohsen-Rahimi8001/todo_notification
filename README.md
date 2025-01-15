@@ -14,4 +14,5 @@ A todo app written in bash script using zenity
 * define cronjob
   1. `crontab -e`
   2. add this line to your crontab file `0 */2 * * * DISPLAY=:0 todo_notif` to run the app every 2 hours
-     
+
+### *you can update the Icon in desktop_file and run the setup script again to apply changes*
