@@ -23,11 +23,18 @@ add_to_list() {
 	fi
 
 	local title=$(echo $entry | cut -d '|' -f 1)
-	local description=$(echo $entry | cut -d '|' -f 2)
+	local date=$(echo $entry | cut -d '|' -f 2)
+	local description=$(echo $entry | cut -d '|' -f 3)
 
 	local num=$(tail -n 1 $TODO_FILE | cut -d '|' -f 1)
 	local new_id=$((num + 1))
-	echo -e "$new_id|$title|$description" >> $TODO_FILE
+
+	if [ "$date" == "" ]; then
+		# date not specified
+		date="no deadline"
+	fi
+
+	echo -e "$new_id|$title|$date|$description" >> $TODO_FILE
 
 	echo "added successfully";
 	APP_STATE=2;
@@ -43,9 +50,9 @@ remove_from_list() {
 
 main_page() {
 
-	local zenity_command="zenity --height=300 --width=700 --list --checklist --text 'Select completed tasks to delete' --column '' --column 'ID' --column 'title' --column 'description' --ok-label='Delete' --extra-button 'Add' "
-	while IFS="|" read -r id title description; do
-		zenity_command+="FALSE $id '$title' '$description' "
+	local zenity_command="zenity --height=300 --width=700 --list --checklist --text 'Select completed tasks to delete' --column '' --column 'ID' --column 'title' --column 'date' --column 'description' --ok-label='Delete' --extra-button 'Add' "
+	while IFS="|" read -r id title date description; do
+		zenity_command+="FALSE $id '$title' '$date' '$description' "
 	done < $TODO_FILE
 	
 	echo $zenity_command > zenity_cmd.sh
