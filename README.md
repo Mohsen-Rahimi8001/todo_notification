@@ -5,9 +5,10 @@ A todo app written in bash script using zenity
 * make todo.sh and setup.sh executable
   `chmod +x todo.sh`
   `chmod +x setup.sh`
-* change todo.sh file
+* change `todo.sh` file
+
   change `LONG_TERM_TODO` and `DAILY_TODO` variables to your own local directories
-* run setup.sh
+* run `setup.sh`
   it requires sudo access
   
 ## create a cronjob to run the nofication app periodically
